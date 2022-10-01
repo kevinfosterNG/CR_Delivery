@@ -4,11 +4,38 @@
 This application allows delivery of Crystal Reports by either Email or File export either directly, or scheduled through NextGen's Background Business Processor.  
 Refer to the [User Guide](https://github.com/kevinfosterNG/CR_Delivery/blob/master/Crystal%20Report%20Delivery%20-%20User%20Guide.pdf) for installation and configuration. 
 
-### CR Delivery (v1.0.13)
-![CR Delivery (v1.0.13)](https://github.com/kevinfosterNG/CR_Delivery/blob/master/app.png)
+Here is a simple flow chart:
 
+```mermaid
+flowchart LR;
+    subgraph nge [NextGen]
+        direction TB
+        ng[(NGProd)]-->bbp;
+        bbp[[BBP Job]];
+    end
+    bbp-->cd;
+    cd-->pdf[[fa:fa-file-alt Report Delivered!]];
+    subgraph cd [Crystal Delivery]
+        direction TB
+        crxml([fa:fa-file-code *.crxml]) --> crd;
+        crd(CR_Delivery.exe) --> crxml;
+        crxml --> rpt(*.rpt) --> crxml;
+    end
+```
+
+### CR Delivery (v1.0.13)
+<p align="center">
+  <img src="https://github.com/kevinfosterNG/CR_Delivery/blob/master/app.png" />
+  <h5 align="center">CR Delivery About
+<p align="center">
+  
+![asdf](https://fostes.org/img/CRDelivery-TestExport.gif)
+  
 ### NextGen BBP Integration
-![NextGen BBP Integration](https://github.com/kevinfosterNG/CR_Delivery/blob/master/bbp_job.png)
+  <p align="center">
+  <img src="https://github.com/kevinfosterNG/CR_Delivery/blob/master/bbp_job.png" />
+  <h5 align="center">NextGen BBP Integration
+<p align="center">
 
 ## Installer Download
 [v1.1.3](Setup-1.1.3.msi)
